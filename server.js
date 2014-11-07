@@ -23,8 +23,8 @@ if (!(TWITTER_API_KEY && TWITTER_API_SECRET && TWITTER_ACCESS_TOKEN && TWITTER_A
   process.exit(1);
 }
 
-// Term used to filter on twitter //
-var searchTerm = process.env.HASHTAG || [ '#getupcloud', '@getupcloud' ];
+// Word used to watch on twitter //
+var hashTag = process.env.HASHTAG || '#nodejs';
 
 // Web Server //
 var app = express();
@@ -41,17 +41,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 var server = http.createServer(app);
 
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('index', { hashTag: hashTag });
 });
 
 // WebSocket //
 var wss = new ws.Server({server: server});
 
 wss.on('connection', function(ws) {
-  console.log('New WS client');
+  console.log('%s: New WS client', Date(Date.now()));
 
   ws.on('close', function(code, message) {
-    console.log('Cliente desconectado');
+    console.log('%s: Client disconnected', Date(Date.now()));
   });
 });
 
@@ -71,9 +71,9 @@ var t = new twitter({
     access_token_secret: TWITTER_ACCESS_TOKEN_SECRET
 });
 
-t.stream('statuses/filter', { track: searchTerm }, function(stream) {
+t.stream('statuses/filter', { track: hashTag }, function(stream) {
   stream.on('error', function(error) {
-    console.error('ERROR:', error);
+    console.error('%s: ERROR:', Date(Date.now()), error);
   });
 
   stream.on('data', function(tweet) {
@@ -92,15 +92,15 @@ t.stream('statuses/filter', { track: searchTerm }, function(stream) {
 // Signal handlers (optional) //
 process.on('exit', function() {
   // give a chance to do something upon exit
-  console.log('bye...');
+  console.log('%s: bye...', Date(Date.now()));
 });
 
 [ 'SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
   'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM' ].forEach(function(sig, index, array) {
   process.on(sig, function() {
     if (typeof sig === "string") {
-      console.log('%s: Received %s - terminating sample app ...', Date(Date.now()), sig);
-      console.log('%s: Node server stopped.', Date(Date.now()) );
+      console.log('%s: Received %s - terminating app...', Date(Date.now()), sig);
+      console.log('%s: App terminated.', Date(Date.now()) );
       process.exit(1);
     }
   });
@@ -108,5 +108,5 @@ process.on('exit', function() {
 
 // Start the app //
 server.listen(port, addr);
-console.log("App express escutando %s:%s", addr, port);
+console.log("%s: App listening on %s:%s", Date(Date.now()), addr, port);
 
