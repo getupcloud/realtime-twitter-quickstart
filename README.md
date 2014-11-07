@@ -27,4 +27,4 @@ Execute o seguinte comando para criar uma aplicação NodeJS usando este reposit
 O comando acima cria uma aplicação `nodejs-0.10` chamada `twitter`, exportando as chaves de acesso do twitter (`TWITTER_*`) para dentro do servidor como variáveis de ambiente.
 A variáveil `HASHTAG` determina qual o termo usado para filtar os tweets na busca.
 
-Acesse o endereço http://twitter-$namescape.getup.io.
+Acesse o endereço http://twitter-$namespace.getup.io e espera a busca iniciar.
