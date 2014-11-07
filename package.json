@@ -25,7 +25,12 @@
   },
 
   "dependencies": {
-    "express": "~3.4.4"
+    "sleep": "*",
+    "express": "~3.4.4",
+    "jade": "*",
+    "stylus": "*",
+    "ws": "*",
+    "twitter": "*"
   },
   "devDependencies": {},
   "bundleDependencies": [],

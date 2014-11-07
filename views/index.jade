@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        title #FrontInPOA - Tweet em tempo real
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src="http://code.jquery.com/jquery-1.9.1.min.js")
+        script(src="/javascripts/script.js")
+    body(background="http://frontinpoa.com.br/2014/images/about.jpg")
+        .container
+            .header
+                h1 #FrontInPOA - Tweet em tempo real
+                //small Use a hashtag <strong>#FrontInPOA</strong> no twitter para aparecer na lista abaixo.
+                small Esta aplicação usa NodeJS + WebSockets para atualizar o cliente em tempo real.
+                //small Baseado em https://github.com/thedillonb/twitter-cashtag-heatmap
+                small
+                    i
+                        | Última atualização:
+                        span(id="last-update") Nunca
+            ul
