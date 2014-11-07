@@ -13,6 +13,7 @@ $(function() {
      +'</li>'
     );
     $('ul').prepend(li);
+    $('#last-update').text(new Date().toTimeString()); 
   };
 
   //Referencia: http://www.html5rocks.com/pt/tutorials/websockets/basics/
@@ -32,7 +33,6 @@ $(function() {
     add_tweet(t);
   };
 
-  $('#last-update').text(new Date().toTimeString()); 
 
   /*add_tweet({
     name: 'fsilva',
