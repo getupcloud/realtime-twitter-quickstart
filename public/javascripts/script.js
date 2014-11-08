@@ -33,6 +33,12 @@ $(function() {
     add_tweet(t);
   };
 
+  setInterval(function() {
+    if (ws.bufferedAmount == 0) {
+      ws.send("keep-alive");
+    }
+  }, 30000);
+
 
   /*add_tweet({
     name: 'fsilva',
