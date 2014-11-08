@@ -77,6 +77,7 @@ t.stream('statuses/filter', { track: hashTag }, function(stream) {
   });
 
   stream.on('data', function(tweet) {
+    console.log('%s: new tweet [@%s]', Date(Date.now()), tweet.user.screen_name);
     wss.broadcast({
       name:              tweet.user.name,
       screen_name:       tweet.user.screen_name,
