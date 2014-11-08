@@ -6,9 +6,9 @@ $(function() {
      +      '<img src="' + t.profile_image_url + '">'
      +  '</div>'
      +  '<div class="tweet">'
-     +      '<div class="screen_name">' + t.screen_name + '</div>'
-     +      '<div class="name"><a href="https://twitter.com/' + t.name + '">@' + t.name + '</a></div>'
-     +      '<div class="created_at">' + t.created_at + '</div>'
+     +      ' <div class="name">' + t.name + '</div>'
+     +      ' <div class="screen_name"><a href="https://twitter.com/' + t.screen_name + '">@' + t.screen_name + '</a></div>'
+     +      ' <div class="created_at">' + t.created_at + '</div>'
      +  '<div class="text">' + t.text + '</div>'
      +'</li>'
     );
